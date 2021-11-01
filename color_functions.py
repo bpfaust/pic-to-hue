@@ -61,14 +61,3 @@ def FillBulbs(colors, bulbs=1):
         while len(bulb_colors) < bulbs:
             bulb_colors.append(bulb_colors[i%l])
     return bulb_colors
-
-def Authorized(request_key):
-    current_dir = PurePath()
-    access_tokens = Path(current_dir) / 'chimney_server' / 'tokens.json'
-    return_decision = False
-    if access_tokens.exists():
-        with access_tokens.open() as access_file:
-            access_data = json.load(access_file)
-            if request_key in access_data["allowedTokens"]:
-                return_decision = True
-    return return_decision
